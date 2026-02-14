@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+/* Fondo con corazones flotantes */
+.background-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.heart-float {
+    position: absolute;
+    color: rgba(255, 0, 0, 0.3);
+    font-size: 20px;
+    animation: float 6s infinite linear;
+    user-select: none;
+    will-change: transform, opacity;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* Pantalla de inicio con el sobre */
+.container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    transition: opacity 1s ease;
+    padding: 20px;
+}
+
+.envelope {
+    background: linear-gradient(145deg, #1a1a1a, #000000);
+    border: 2px solid #ff0000;
+    border-radius: 20px;
+    padding: 50px 30px;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    margin: 20px auto;
+}
+
+.envelope:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 70px rgba(255, 0, 0, 0.8);
+}
+
+.envelope:active {
+    transform: scale(0.98);
+}
+
+.envelope:before {
+    content: "❤️";
+    font-size: min(70px, 15vw);
+    display: block;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+.envelope h2 {
+    color: white;
+    font-size: clamp(24px, 6vw, 32px);
+    margin: 15px 0;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.envelope p {
+    color: #cccccc;
+    font-size: clamp(20px, 5vw, 28px);
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.open-text {
+    color: #ff5555;
+    font-size: clamp(16px, 4vw, 20px);
+    margin-top: 30px;
+    border-top: 1px solid #ff0000;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+/* Contenido principal (se muestra al abrir el sobre) */
+.content {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #220000, #000000);
+    padding: 30px 20px;
+}
+
+.content.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.message-box {
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px solid #ff0000;
+    border-radius: 30px;
+    padding: clamp(30px, 6vw, 50px) clamp(20px, 4vw, 40px);
+    box-shadow: 0 0 80px rgba(255, 0, 0, 0.6);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    animation: glow 2s infinite alternate;
+    margin: 30px auto;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 50px rgba(255, 0, 0, 0.5); }
+    to { box-shadow: 0 0 100px rgba(255, 0, 0, 0.9); }
+}
+
+.message-box h1 {
+    color: #ff3333;
+    font-size: clamp(32px, 8vw, 52px);
+    margin: 0 0 10px;
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #ff0000;
+    line-height: 1.2;
+}
+
+.message-box .dayne-name {
+    color: white;
+    font-size: clamp(24px, 6vw, 40px);
+    margin: 0 0 25px;
+    line-height: 1.3;
+}
+
+.message-box .dayne-name span {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.dedication {
+    font-size: clamp(18px, 4.5vw, 26px);
+    line-height: 1.7;
+    color: #eee;
+    margin: 25px 0 30px;
+    font-style: italic;
+    word-break: break-word;
+}
+
+.dedication .heart-symbol {
+    color: #ff0000;
+    font-size: clamp(24px, 5vw, 32px);
+    animation: pulse 1s infinite;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* Corazón interactivo */
+.interactive-heart {
+    margin: 25px 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.interactive-heart:hover {
+    transform: scale(1.1);
+}
+
+.interactive-heart:active {
+    transform: scale(0.95);
+}
+
+.interactive-heart svg {
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(70px, 15vw, 100px);
+    filter: drop-shadow(0 0 15px #ff0000);
+}
+
+.heart-path {
+    transition: fill 0.3s ease;
+}
+
+.heart-message {
+    font-size: clamp(16px, 4vw, 22px);
+    color: #ff9999;
+    margin-top: 12px;
+    min-height: 35px;
+    font-weight: bold;
+}
+
+.signature {
+    font-size: clamp(24px, 6vw, 32px);
+    color: white;
+    border-top: 2px solid #ff0000;
+    padding-top: 20px;
+    margin-top: 20px;
+    font-family: 'cursive', 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+.signature br + br {
+    display: none; /* Elimina espacio extra después de TE AMOOOO */
+}
+
+.signature:last-line {
+    color: #ff5555;
+    font-size: 1.2em;
+}
+
+.button-close {
+    background: transparent;
+    border: 2px solid #ff0000;
+    color: white;
+    font-size: clamp(14px, 3.5vw, 18px);
+    padding: 12px 35px;
+    border-radius: 50px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    letter-spacing: 1px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button-close:hover {
+    background: #ff0000;
+    color: black;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+.button-close:active {
+    transform: scale(0.95);
+}
+
+/* Pequeños detalles */
+.sparkles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+    top: 0;
+    left: 0;
+}
+
+.sparkle {
+    position: absolute;
+    color: #ff0000;
+    font-size: 10px;
+    animation: sparkleAnim 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkleAnim {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+/* Ajustes específicos para móviles */
+@media (max-width: 480px) {
+    .envelope {
+        padding: 40px 20px;
+    }
+    
+    .envelope:before {
+        font-size: 60px;
+    }
+    
+    .message-box {
+        padding: 30px 18px;
+    }
+    
+    .dedication {
+        margin: 20px 0;
+    }
+    
+    .signature {
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+    
+    .content {
+        padding: 20px 15px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .envelope {
+        padding: 30px 15px;
+    }
+    
+    .envelope h2 {
+        font-size: 22px;
+    }
+    
+    .message-box h1 {
+        font-size: 28px;
+    }
+    
+    .dedication {
+        font-size: 16px;
+    }
+    
+    .signature {
+        font-size: 22px;
+    }
+}
+
+/* Ajuste especial para el "TE AMOOOO" */
+.signature br:last-of-type {
+    display: none;
+}
+
+.signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.signature br {
+    display: none;
+}
+
+.signature::after {
+    content: "TE AMOOOO";
+    color: #ff5555;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Si prefieres mantener el "TE AMOOOO" como está en el HTML, comenta la línea de arriba */

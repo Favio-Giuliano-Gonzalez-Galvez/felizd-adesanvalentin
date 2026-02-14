@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Dayne y Favio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Fondo con corazones flotantes -->
+    <div class="background-hearts" id="heartBackground"></div>
 
+    <!-- Pantalla del sobre (inicio) -->
+    <div class="container" id="envelopeContainer">
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+            <h2>Para mi linda noviecita</h2>
+            <p>Dayne</p>
+            <div class="open-text">💌 Toca para abrir 💌</div>
+        </div>
+    </div>
+
+    <!-- Contenido principal (se muestra al abrir el sobre) -->
+    <div class="content" id="mainContent">
+        <div class="message-box">
+            <h1>Feliz Día de</h1>
+            <div class="dayne-name">San Valentín, <span>Cariñooo</span> ❤️</div>
+            
+            <div class="dedication">
+                <span class="heart-symbol">❤️</span> Para la mujer que ilumina mis días <span class="heart-symbol">❤️</span><br>
+                Tu sonrisa es mi lugar favorito,<br>
+                tus ojos, mi refugio.<br>
+                Gracias por ser tú, cariñoo.
+            </div>
+
+            <!-- Corazón interactivo -->
+            <div class="interactive-heart" onclick="changeHeartColor()">
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                    <path class="heart-path" d="M50 20 C5 5, 5 60, 50 90 C95 60, 95 5, 50 20" fill="#ff0000" stroke="#990000" stroke-width="2"/>
+                </svg>
+                <div class="heart-message" id="heartMessage">¡Toca el corazón!</div>
+            </div>
+
+            <div class="signature">
+                Con todo mi cariño,<br>
+                Favio 💕<br>TE AMOOOO
+            </div>
+
+            <button class="button-close" onclick="closeAndReturn()">Volver a empezar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
